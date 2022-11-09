@@ -20,7 +20,7 @@ public class UsersController {
 
     @GetMapping()
     public String index(Model model) {
-        model.addAttribute("users", userDAO.index());
+        model.addAttribute("listUsers", userDAO.index());
         return "users/index";
     }
 

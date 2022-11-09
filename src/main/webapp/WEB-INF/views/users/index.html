@@ -6,10 +6,31 @@
 </head>
 <body>
 
-<div th:each="user : ${users}">
-  <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName()}">user</a>
+<div th:each="user : ${listUsers}">
+  <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName()}" >user</a>
 </div>
-<p><a href="users/new">Push to add new user!</a></p>
+
+<table border>
+
+  <caption>Table of users</caption>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Surname</th>
+  </tr>
+
+  <tr th:each="usr : ${listUsers}">
+    <td th:utext="${usr.id}"></td>
+    <td th:utext="${usr.name}"></td>
+    <td th:utext="${usr.surname}"></td>
+  </tr>
+
+</table>
+<br/>
+<form th:method="GET" th:action="@{/users/new}" >
+  <br/>
+  <input type="submit" value="Create new User!"/>
+</form>
 
 </body>
 </html>
