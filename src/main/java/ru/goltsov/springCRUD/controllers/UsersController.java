@@ -49,8 +49,10 @@ public class UsersController {
         return "users/edit";
     }
 
-//    @PatchMapping("/{id}")
-//    public String update(ModelAttribute("user") User user,
-//    @PathVariable("id") int id, Model ){
-//    }
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+        userDAO.update(id, user);
+        return "redirect:/users";
+
+    }
 }

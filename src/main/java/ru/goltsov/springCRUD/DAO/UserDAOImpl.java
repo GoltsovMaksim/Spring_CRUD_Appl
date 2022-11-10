@@ -37,4 +37,11 @@ public class UserDAOImpl implements UserDAO {
         user.setId(++USER_COUNT);
         listUsers.add(user);
     }
+
+    @Override
+    public void update(int id, User user) {
+        User userToUpdate = show(id);
+        userToUpdate.setName(user.getName());
+        userToUpdate.setSurname(user.getSurname());
+    }
 }

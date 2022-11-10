@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Personal user page</title>
+    <meta charset="UTF-8">
+    <title>Personal user page</title>
 </head>
 <body>
 <!--<p th:text="${user.getName()}">VALUE</p>-->
@@ -12,24 +12,30 @@
 <br/>
 <table border>
 
-  <caption>User</caption>
-  <tr>
-    <th>Id</th>
-    <th>Name</th>
-    <th>Surname</th>
-  </tr>
+    <caption>User</caption>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Surname</th>
+    </tr>
 
-  <tr>
-    <td th:utext="${user.getId()}"></td>
-    <td th:utext="${user.getName()}"></td>
-    <td th:utext="${user.getSurname()}"></td>
-  </tr>
+    <tr>
+        <td th:utext="${user.getId()}"></td>
+        <td th:utext="${user.getName()}"></td>
+        <td th:utext="${user.getSurname()}"></td>
+    </tr>
 
 </table>
 
-<form th:method="GET" th:action="@{/users}" >
-  <br/>
-  <input type="submit" value="Return to All Users"/>
+<form th:method="GET" th:action="@{/users}">
+    <br/>
+    <input type="submit" value="Return to All Users"/>
 </form>
+
+<form th:method="GET" th:action="@{/users/{id}/edit(id=${user.getId()})}">
+    <br/>
+    <input type="submit" value="Do you need to update any Data?">
+</form>
+
 </body>
 </html>
