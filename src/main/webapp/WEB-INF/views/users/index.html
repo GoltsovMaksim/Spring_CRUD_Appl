@@ -1,16 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>All users</title>
+  <style>
+    TABLE {
+      width: 300px;
+      border-collapse: collapse;
+    }
+    TD, TH {
+      padding: 4px;
+      border: 1px solid darkred;
+    }
+    TH {
+      background-color: #6BFF33;
+    }
+  </style>
 </head>
 <body>
 
 <div th:each="user : ${listUsers}">
-  <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName()}" >user</a>
+  <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName()}" >someUser</a>
 </div>
 
-<table border>
+<table th:border="2px">
 
   <caption>Table of users</caption>
   <tr>

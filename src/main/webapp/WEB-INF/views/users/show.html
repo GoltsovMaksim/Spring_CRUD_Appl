@@ -1,17 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Personal user page</title>
+
+
+    <style>
+        TABLE {
+            width: 300px;
+            border-collapse: collapse;
+            border: 2px black;
+        }
+        TD, TH {
+            padding: 4px;
+            border: 1px solid darkred;
+        }
+        TH {
+            background: #6BFF33;
+        }
+    </style>
 </head>
 <body>
-<!--<p th:text="${user.getName()}">VALUE</p>-->
-<!--<p th:text="${user.getSurname()}">VALUE</p>-->
-<!--<p th:text="${user.getId()}">VALUE</p>-->
 
 <br/>
-<table border>
-
+<table th:border="2px">
     <caption>User</caption>
     <tr>
         <th>Id</th>
