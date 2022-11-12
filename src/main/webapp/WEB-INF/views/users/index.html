@@ -5,6 +5,7 @@
   <title>All users</title>
   <style>
     TABLE {
+      border: 3px solid grey;
       width: 300px;
       border-collapse: collapse;
     }
@@ -23,7 +24,8 @@
   <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName()}" >someUser</a>
 </div>
 
-<table th:border="2px">
+<table>
+
 
   <caption>Table of users</caption>
   <tr>
