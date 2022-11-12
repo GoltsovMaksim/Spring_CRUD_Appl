@@ -11,10 +11,12 @@
             width: 300px;
             border-collapse: collapse;
         }
+
         TD, TH {
             padding: 4px;
             border: 1px solid darkred;
         }
+
         TH {
             background: #6BFF33;
         }
@@ -38,16 +40,17 @@
     </tr>
 
 </table>
-
+<br/>
 <form th:method="GET" th:action="@{/users}">
-    <br/>
     <input type="submit" value="Return to All Users"/>
 </form>
-
+<br/>
 <form th:method="GET" th:action="@{/users/{id}/edit(id=${user.getId()})}">
-    <br/>
     <input type="submit" value="Do you need to update any Data?">
 </form>
-
+<br/>
+<form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+    <input type="submit" value="Delete User">
+</form>
 </body>
 </html>

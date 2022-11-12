@@ -44,4 +44,9 @@ public class UserDAOImpl implements UserDAO {
         userToUpdate.setName(user.getName());
         userToUpdate.setSurname(user.getSurname());
     }
+
+    @Override
+    public void delete(int id) {
+        listUsers.removeIf(u -> u.getId() == id);
+    }
 }
