@@ -6,7 +6,6 @@ public class User {
     int id;
     @NotEmpty(message = "You have to add some name")
     @Size(min = 2, max = 20, message = "Wrong name length! Name should be between 2 & 20 characters. ")
-
     String name;
     @NotEmpty(message = "You have to add some surname")
     String surname;
