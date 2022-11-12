@@ -31,12 +31,16 @@
         <th>Id</th>
         <th>Name</th>
         <th>Surname</th>
+        <th>Age</th>
+        <th>Email</th>
     </tr>
 
     <tr>
         <td th:utext="${user.getId()}"></td>
         <td th:utext="${user.getName()}"></td>
         <td th:utext="${user.getSurname()}"></td>
+        <td th:utext="${user.getAge()}"></td>
+        <td th:utext="${user.getEmail()}"></td>
     </tr>
 
 </table>

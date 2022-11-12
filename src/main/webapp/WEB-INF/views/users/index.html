@@ -32,16 +32,21 @@
     <th>Id</th>
     <th>Name</th>
     <th>Surname</th>
+    <th>Age</th>
+    <th>Email</th>
   </tr>
 
-  <tr th:each="usr : ${listUsers}">
-    <td th:utext="${usr.id}"></td>
-    <td th:utext="${usr.name}"></td>
-    <td th:utext="${usr.surname}"></td>
+  <tr th:each="user : ${listUsers}">
+    <td th:utext="${user.id}"></td>
+    <td th:utext="${user.name}"></td>
+    <td th:utext="${user.surname}"></td>
+    <td th:utext="${user.age}"></td>
+    <td th:utext="${user.email}"></td>
   </tr>
 
 </table>
 <br/>
+<hr/>
 <form th:method="GET" th:action="@{/users/new}" >
   <input type="submit" value="Create new User!"/>
 </form>

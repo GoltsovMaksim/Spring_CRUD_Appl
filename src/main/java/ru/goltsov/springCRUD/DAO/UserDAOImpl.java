@@ -12,11 +12,11 @@ public class UserDAOImpl implements UserDAO {
     private final List<User> listUsers = new ArrayList<>();
 
     {
-        listUsers.add(new User(++USER_COUNT, "Aser", "Qwerty"));
-        listUsers.add(new User(++USER_COUNT, "Bob", "Tompson"));
-        listUsers.add(new User(++USER_COUNT, "Charles", "Loly"));
-        listUsers.add(new User(++USER_COUNT, "Doka", "Carl"));
-        listUsers.add(new User(++USER_COUNT, "Elena", "Ivanova"));
+        listUsers.add(new User(++USER_COUNT, "Aser", "Qwerty",22,"aser@ya.ru"));
+        listUsers.add(new User(++USER_COUNT, "Bob", "Tompson",26,"btomompson@google.com"));
+        listUsers.add(new User(++USER_COUNT, "Charles", "Loly",43, "lolyta@yahoo.com"));
+        listUsers.add(new User(++USER_COUNT, "Doka", "Carl",32,"carlusha@gmail.com"));
+        listUsers.add(new User(++USER_COUNT, "Elena", "Ivanova",50, "qwerty@drmom.com"));
     }
 
     public UserDAOImpl() {
@@ -43,6 +43,8 @@ public class UserDAOImpl implements UserDAO {
         User userToUpdate = show(id);
         userToUpdate.setName(user.getName());
         userToUpdate.setSurname(user.getSurname());
+        userToUpdate.setAge(user.getAge());
+        userToUpdate.setEmail(user.getEmail());
     }
 
     @Override
