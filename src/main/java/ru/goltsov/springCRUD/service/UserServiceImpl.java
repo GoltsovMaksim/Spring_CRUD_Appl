@@ -2,6 +2,7 @@ package ru.goltsov.springCRUD.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.goltsov.springCRUD.DAO.UserDAO;
 import ru.goltsov.springCRUD.DAO.UserDAOImpl;
 import ru.goltsov.springCRUD.models.User;
 
@@ -10,7 +11,7 @@ import java.util.List;
 @Component
 public class UserServiceImpl implements UserService {
 
-    private final UserDAOImpl userDAO;
+    private final UserDAO userDAO;
 
     @Autowired
     public UserServiceImpl(UserDAOImpl userDAO) {

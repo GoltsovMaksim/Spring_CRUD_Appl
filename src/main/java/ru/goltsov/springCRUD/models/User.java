@@ -1,19 +1,28 @@
 package ru.goltsov.springCRUD.models;
 
+import javax.persistence.*;
 import javax.validation.constraints.*;
-
+@Entity
+@Table(name="users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     int id;
     @NotEmpty(message = "You have to add some name")
     @Size(min = 2, max = 20, message = "Wrong name length! Name should be between 2 & 20 characters. ")
+    @Column(name = "name")
     String name;
     @NotEmpty(message = "You have to add some surname")
+    @Column(name = "surname")
     String surname;
     @Min(value = 0, message = "Age should be more than 0 ")
     @Max(value = 120, message = "Age very rare could be more than 120")
+    @Column(name = "age")
     int age;
     @NotEmpty(message = "Email should`nt be empty")
     @Email(message= "Email should be like this form - qqqq@ya.ru")
+    @Column(name = "email")
     String email;
 
     public User(int id, String name, String surname, int age, String email) {
@@ -29,10 +38,6 @@ public class User {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {

@@ -1,54 +1,75 @@
 package ru.goltsov.springCRUD.DAO;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
+import ru.goltsov.springCRUD.config.Util;
 import ru.goltsov.springCRUD.models.User;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class UserDAOImpl implements UserDAO {
-    private static int USER_COUNT;
-    private final List<User> listUsers = new ArrayList<>();
-
-    {
-        listUsers.add(new User(++USER_COUNT, "Aser", "Qwerty",22,"aser@ya.ru"));
-        listUsers.add(new User(++USER_COUNT, "Bob", "Tompson",26,"btomompson@google.com"));
-        listUsers.add(new User(++USER_COUNT, "Charles", "Loly",43, "lolyta@yahoo.com"));
-        listUsers.add(new User(++USER_COUNT, "Doka", "Carl",32,"carlusha@gmail.com"));
-        listUsers.add(new User(++USER_COUNT, "Elena", "Ivanova",50, "qwerty@drmom.com"));
-    }
+    private final SessionFactory sessionFactory = Util.getSessionFactory();
 
     public UserDAOImpl() {
     }
 
     @Override
     public List<User> index() {
-        return listUsers;
+        return sessionFactory.openSession().createQuery("From User", User.class).list();
     }
 
     @Override
     public User show(int id) {
-        return listUsers.stream().filter(user -> user.getId() == id).findAny().orElse(null);
+        User userTemp = null;
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            userTemp = session.get(User.class, id);
+            session.getTransaction().commit();
+            return userTemp;
+        } catch (Exception e) {
+            System.out.printf("Unable to delete user with ID - %d", id);
+        }
+        return userTemp;
     }
+
 
     @Override
     public void save(User user) {
-        user.setId(++USER_COUNT);
-        listUsers.add(user);
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.save(user);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Unable to save person to the table Users");
+        }
     }
+
 
     @Override
     public void update(int id, User user) {
-        User userToUpdate = show(id);
-        userToUpdate.setName(user.getName());
-        userToUpdate.setSurname(user.getSurname());
-        userToUpdate.setAge(user.getAge());
-        userToUpdate.setEmail(user.getEmail());
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            User userTemp = session.get(User.class, id);
+            userTemp.setName(user.getName());
+            userTemp.setSurname(user.getSurname());
+            userTemp.setAge(user.getAge());
+            userTemp.setEmail(user.getEmail());
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.printf("Unable to delete user with ID - %d", id);
+        }
     }
 
     @Override
     public void delete(int id) {
-        listUsers.removeIf(u -> u.getId() == id);
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            User userTemp = session.get(User.class, id);
+            session.delete(userTemp);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.printf("Unable to delete user with ID - %d", id);
+        }
     }
 }
